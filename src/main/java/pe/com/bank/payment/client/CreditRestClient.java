@@ -13,15 +13,15 @@ public class CreditRestClient {
 
     private WebClient webClient;
 
-    @Value("http://localhost:8091/v1/credits")
-    private String CreditUrl;
+    @Value("${restClient.creditUrl}")
+    private String creditUrl;
 
     public CreditRestClient(WebClient webClient) {
         this.webClient = webClient;
     }
 
      public Mono<CreditDTO> updateCreditA(CreditDTO creditDTO,String creditId){
-         var url = CreditUrl.concat("/{id}");
+         var url = creditUrl.concat("/v1/credits/{id}");
          return webClient
                  .put()
                  .uri(url, creditId)
@@ -31,7 +31,7 @@ public class CreditRestClient {
      }
 
      public Mono<CreditDTO> retrieveCreditA(String creditId){
-         var url = CreditUrl.concat("/{id}");
+         var url = creditUrl.concat("/v1/credits/{id}");
          return webClient
                  .get()
                  .uri(url, creditId)

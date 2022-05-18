@@ -11,7 +11,7 @@ public class TransactionRestClient {
 
     private WebClient webClient;
 
-    @Value("http://localhost:8094/v1")
+    @Value("${restClient.transactionUrl}")
     private String transactionUrl;
 
 
@@ -20,7 +20,7 @@ public class TransactionRestClient {
     }
 
     public Mono<TransactionDTO> createTransactionA(TransactionDTO transactionDTO){
-        var url = transactionUrl.concat("/transaction");
+        var url = transactionUrl.concat("/v1/createTransaction");
         return webClient.post()
                 .uri(url)
                 .body(Mono.just(transactionDTO), TransactionDTO.class)

@@ -9,14 +9,11 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountDTO {
+public class PaymentChargeDTO {
 
-    private String id;
-    private String accountNumber;
+    private String creditId;
     private Double amount;
-    private Date dateOpen;
-    private String amounttype;
-    private String productId;
-    private String customerId;
+    private String type;
+    private Date date;
 
 }

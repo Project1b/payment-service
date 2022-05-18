@@ -11,15 +11,15 @@ public class AccountRestClient {
 
     private WebClient webClient;
 
-    @Value("http://localhost:8085/accounts")
-    private String AccountUrl;
+    @Value("${restClient.accountUrl}")
+    private String accountUrl;
 
     public AccountRestClient(WebClient webClient) {
         this.webClient = webClient;
     }
 
     public Mono<AccountDTO> updateAccountA(AccountDTO accountDTO, String accountId) {
-        var url = AccountUrl.concat("/update/{id}");
+        var url = accountUrl.concat("/update/{id}");
         return webClient
                 .put()
                 .uri(url, accountId)
@@ -29,7 +29,7 @@ public class AccountRestClient {
     }
 
     public Mono<AccountDTO> retrieveAccountA(String accountId){
-        var url = AccountUrl.concat("/{id}");
+        var url = accountUrl.concat("/accounts/{id}");
         return webClient
                 .get()
                 .uri(url, accountId)
